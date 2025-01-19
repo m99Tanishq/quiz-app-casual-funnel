@@ -8,16 +8,28 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout the code
       - name: Checkout code
         uses: actions/checkout@v2
+
+      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
+
+      # Install dependencies
       - name: Install dependencies
         run: npm install
+
+      # Build the project using Vite
       - name: Build the project
         run: npm run build
+
+      # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         run: npm run deploy
+        env:
+          CI: false
